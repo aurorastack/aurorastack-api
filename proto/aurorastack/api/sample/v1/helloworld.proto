@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package aurorastack.api.sample.v1;
+
+option go_package = "github.com/aurorastack/api/dist/go/aurorastack/api/sample/v1";
+
+import "google/api/annotations.proto";
+
+// The greeting service definition.
+service HelloWorld {
+    rpc say_hello (HelloRequest) returns (HelloReply) {
+        option (google.api.http) = {
+            post: "/sample/v1/say_hello"
+            body: "*"
+        };
+    }
+}   
+
+//{
+// "name": "Tom"
+//}
+message HelloRequest {
+    string name = 1;
+}
+
+//{
+// "message": "Hello Tom"
+//}
+message HelloReply {
+    string message = 1;
+}

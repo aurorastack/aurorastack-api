@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package aurorastack.api.core.v2;
+
+option go_package = "github.com/aurorastack/api/dist/go/aurorastack/api/core/v2";
+
+import "google/protobuf/struct.proto";
+
+message AuthenticationRequest {
+    string tenant_id = 1;
+}
+
+message AuthenticationResponse {
+    string tenant_id = 1;
+    string public_key = 2;
+}
+
+message EventRequest {
+    string service = 1;
+    string resource = 2;
+    string verb = 3;
+    string status = 4;
+    google.protobuf.Struct message = 5;
+}

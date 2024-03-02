@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package aurorastack.api.core.v1;
+
+option go_package = "github.com/aurorastack/api/dist/go/aurorastack/api/core/v1";
+
+import "google/protobuf/empty.proto";
+
+service ServerInfo {
+    rpc get_version (google.protobuf.Empty) returns (VersionInfo) {}
+}
+
+message VersionInfo {
+    string version = 1;
+}

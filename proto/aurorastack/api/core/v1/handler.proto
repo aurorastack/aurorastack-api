@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package aurorastack.api.core.v1;
+
+option go_package = "github.com/aurorastack/api/dist/go/aurorastack/api/core/v1";
+
+import "google/protobuf/struct.proto";
+
+message AuthorizationRequest {
+    enum Scope {
+        NONE = 0;
+        SYSTEM = 1;
+        TENANT = 2;
+        PROJECT = 3;
+        USER = 4;
+        PUBLIC = 5;
+        PUBLIC_OR_TENANT = 6;
+        TENANT_OR_PROJECT = 7;
+    }
+
+    string service = 1;
+    string resource = 2;
+    string verb = 3;
+    Scope scope = 4;
+    string tenant_id = 5;
+    string project_id = 6;
+    string project_group_id = 7;
+    string user_id = 8;
+    bool require_project_id = 9;
+    bool require_project_group_id = 10;
+    bool require_user_id = 11;
+    bool require_tenant_id = 12;
+}
+
+message AuthorizationResponse {
+    string role_type = 1;
+    repeated string projects = 2;
+    repeated string project_groups = 3;
+}
+
+message AuthenticationRequest {
+    string tenant_id = 1;
+}
+
+message AuthenticationResponse {
+    string tenant_id = 1;
+    string public_key = 2;
+}
+
+message EventRequest {
+    string service = 1;
+    string resource = 2;
+    string verb = 3;
+    string status = 4;
+    google.protobuf.Struct message = 5;
+}
